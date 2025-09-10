@@ -63,4 +63,4 @@ Keberhasilan: Serangan berhasil.
 
 Refleksi: Lab ini adalah puncak dari pemahaman UNION attack. Ini menunjukkan bagaimana serangkaian query dapat dihubungkan bersama untuk mengeksplorasi struktur database yang tidak diketahui.
 
-Pembelajaran: Keterampilan ini, yang dikenal sebagai database enumeration, sangat penting dalam penetration testing karena memungkinkan Anda untuk beradaptasi dengan sistem yang berbeda dan mengambil informasi berharga secara sistematis.
+Pembelajaran: Keterampilan ini, yang dikenal sebagai database enumeration, sangat penting dalam penetration testing karena memungkinkan Kita untuk beradaptasi dengan sistem yang berbeda dan mengambil informasi berharga secara sistematis.

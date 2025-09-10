@@ -3,7 +3,7 @@
 <img width="1903" height="877" alt="Screenshot 2025-09-10 224859" src="https://github.com/user-attachments/assets/0a8b89e9-fe45-406f-9b2f-5a0976e9bd2d" />
 
 ## 1. [Soal]
-Lab ini memiliki kerentanan SQL injection pada filter kategori produk. Anda dapat menggunakan serangan UNION untuk mengambil hasil dari query yang disuntikkan. Tujuan lab ini adalah menampilkan string versi database MySQL atau Microsoft.
+Lab ini memiliki kerentanan SQL injection pada filter kategori produk. Kita dapat menggunakan serangan UNION untuk mengambil hasil dari query yang disuntikkan. Tujuan lab ini adalah menampilkan string versi database MySQL atau Microsoft.
 
 <img width="1621" height="908" alt="Screenshot 2025-09-10 225245" src="https://github.com/user-attachments/assets/ab09bcfd-0300-488c-b970-186be47a5721" />
 
@@ -33,7 +33,7 @@ Payload yang digunakan: `' +UNION+SELECT+@@version,+NULL#`
 `#`: Simbol ini adalah karakter komentar di MySQL dan Microsoft SQL Server. Ia berfungsi untuk menonaktifkan sisa dari query asli.
 
 ### Langkah-langkah Eksekusi dengan Burp Suite
-#### 1. Siapkan Burp Suite: Pastikan Burp Suite berjalan dan browser Anda sudah dikonfigurasi untuk menggunakan proxy-nya. Aktifkan Intercept is on.
+#### 1. Siapkan Burp Suite: Pastikan Burp Suite berjalan dan browser kita sudah dikonfigurasi untuk menggunakan proxy-nya. Aktifkan Intercept is on.
 
 #### 2. Tangkap Permintaan: Di browser lab, klik salah satu kategori produk (misalnya Gifts). Permintaan GET akan tertangkap oleh Burp Suite.
 

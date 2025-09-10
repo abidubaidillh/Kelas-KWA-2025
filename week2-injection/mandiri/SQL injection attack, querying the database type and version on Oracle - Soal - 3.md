@@ -1,10 +1,10 @@
-# Write-up: SQL Injection - Mengambil Informasi Database Oracle
+# Write-up: SQL injection attack, querying the database type and version on Oracle
 
 <img width="1893" height="878" alt="Screenshot 2025-09-10 220715" src="https://github.com/user-attachments/assets/41241426-7eb0-4471-8a5a-ead2834c7d32" />
 
 
 ## 1. [Soal]
-Lab ini memiliki kerentanan SQL injection pada filter kategori produk. Anda dapat menggunakan serangan UNION untuk mengambil hasil dari query yang disuntikkan. Tujuan lab ini adalah menampilkan string versi database Oracle.
+Lab ini memiliki kerentanan SQL injection pada filter kategori produk. Kita dapat menggunakan serangan UNION untuk mengambil hasil dari query yang disuntikkan. Tujuan lab ini adalah menampilkan string versi database Oracle.
 
 ## 2. [Analisis Kerentanan]
 Sama seperti lab sebelumnya, kerentanan terjadi karena aplikasi secara langsung memasukkan input pengguna ke dalam query SQL, yang kemungkinan besar terlihat seperti ini:
@@ -30,7 +30,7 @@ Payload yang digunakan: `' +UNION+SELECT+BANNER,+NULL+FROM+v$version--`
 `--`: Komentar yang menonaktifkan sisa dari query asli.
 
 ### Langkah-langkah Eksekusi dengan Burp Suite
-1. Siapkan Burp Suite: Buka Burp Suite dan atur browser Anda untuk menggunakan proxy-nya. Pastikan fitur Intercept is on aktif di tab Proxy.
+1. Siapkan Burp Suite: Buka Burp Suite dan atur browser Kita untuk menggunakan proxy-nya. Pastikan fitur Intercept is on aktif di tab Proxy.
 
 2. Tangkap Permintaan: Di browser lab, klik salah satu kategori produk (misalnya Toys Games). Permintaan GET yang dikirim ke server akan langsung tertangkap oleh Burp Suite.
 
