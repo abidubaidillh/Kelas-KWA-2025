@@ -1,42 +1,51 @@
-Write-up: OWASP Juice Shop - Login Bender
-1. [Soal]
+# Write-up: OWASP Juice Shop - Login Bender
+
+<img width="436" height="205" alt="image" src="https://github.com/user-attachments/assets/5fae074c-6d29-44aa-9b9e-623068612742" />
+
+## 1. [Soal]
 Masuk ke akun pengguna Bender.
 
-2. [Analisis Kerentanan]
+## 2. [Analisis Kerentanan]
 Lab ini kembali menunjukkan kerentanan SQL Injection yang sama pada fungsi login. Aplikasi rentan karena ia langsung menyisipkan input dari kolom email dan password ke dalam query SQL tanpa sanitasi yang tepat.
 
 Query yang rentan memiliki format:
+```
 SELECT * FROM users WHERE email = '[input_email]' AND password = '[input_password]'
-
+```
 Tujuan kita adalah mengeksploitasi input email untuk mem-bypass password dan masuk sebagai pengguna Bender.
 
-3. [Jawaban & Bukti]
-Metode Eksploitasi
+## 3. [Jawaban & Bukti]
+### Metode Eksploitasi
 Sama seperti lab sebelumnya, kita akan menggunakan payload SQL Injection untuk membuat database mengabaikan pemeriksaan password bagi pengguna target.
 
-Payload yang digunakan: bender@juice-sh-op'--
+Payload yang digunakan: `bender@juice-sh-op'--`
 
-bender@juice-sh-op' (Tanda Petik Tunggal): Ini adalah username target, dan tanda petik di akhir menutup string email di query SQL.
+`bender@juice-sh-op'` (Tanda Petik Tunggal): Ini adalah username target, dan tanda petik di akhir menutup string email di query SQL.
 
---: Simbol komentar ini menginstruksikan database untuk mengabaikan sisa query yang asli, termasuk bagian AND password = '[input_password]'.
+`--`: Simbol komentar ini menginstruksikan database untuk mengabaikan sisa query yang asli, termasuk bagian AND password = '[input_password]'.
 
-Langkah-langkah Eksekusi
-Buka halaman login.
+### Langkah-langkah Eksekusi
+1. Buka halaman login.
 
-Di kolom Email, masukkan payload: bender@juice-sh-op'--
+2. Di kolom Email, masukkan payload: `bender@juice-sh-op'--`
 
-Di kolom Password, masukkan teks apa saja.
+<img width="558" height="688" alt="Screenshot 2025-09-11 103332" src="https://github.com/user-attachments/assets/ba6c295c-5b08-42e5-9212-672dcf7980f0" />
 
-Klik tombol Log in.
+3. Di kolom Password, masukkan teks apa saja.
+
+4. Klik tombol Log in.
 
 Query yang disuntikkan akan membuat database mengizinkan Anda masuk sebagai Bender tanpa verifikasi password.
 
-Bukti
+### Bukti
 Tangkap layar dari halaman login dengan payload yang dimasukkan.
+
+<img width="1919" height="919" alt="image" src="https://github.com/user-attachments/assets/0f417ace-cd62-4741-8034-721d790af7ea" />
+
 
 Tangkap layar dari dashboard yang menunjukkan Anda telah masuk sebagai Bender, serta notifikasi "challenge solved".
 
-4. [Catatan Hasil Percobaan]
+## 4. [Catatan Hasil Percobaan]
 Keberhasilan: Serangan berhasil.
 
 Refleksi: Lab ini berfungsi sebagai penguatan konsep. Ia menunjukkan bahwa kerentanan SQL Injection yang ditemukan di satu tempat sering kali dapat dieksploitasi dengan pola yang sama di tempat lain pada aplikasi yang sama.
